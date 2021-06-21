@@ -1,40 +1,42 @@
-import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
-import {SidebarData} from './data'
-import './index.css'
-import * as FaIcons from 'react-icons/fa'
-import * as AiIcons from 'react-icons/ai'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './index.css';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import SidebarData from './data';
 
 function Sidebar() {
-  const [sidebar, setSidebar] = useState(false)
+  const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar)
+  const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
-      <div className='sidebar'>
-        <Link to='#' className='menu-bars'>
-          <FaIcons.FaBars onClick={showSidebar}/>
+      <div className="sidebar">
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <Link to="#" className="menu-bars">
+          <FaIcons.FaBars onClick={showSidebar} />
         </Link>
       </div>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-        <ul className='nav-menu-items' onClick={showSidebar}>
-          <li className='sidebar-toggle'>
-            <Link to='#' className='menu-bars color-white'>
-              <AiIcons.AiOutlineClose/>
+        {/* eslint-disable-next-line max-len */}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+        <ul className="nav-menu-items" onClick={showSidebar}>
+          <li className="sidebar-toggle">
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <Link to="#" className="menu-bars color-white">
+              <AiIcons.AiOutlineClose />
             </Link>
           </li>
-          {SidebarData.map((item, index) => {
-            return (
-              <li key={index} className="nav-text">
-                <Link to={item.path}><span>{item.title}</span></Link>
-              </li>
-            )
-          })}
+          {SidebarData.map((item) => (
+            <li key={item.title} className="nav-text">
+              <Link to={item.path}><span>{item.title}</span></Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

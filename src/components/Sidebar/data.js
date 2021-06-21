@@ -1,14 +1,16 @@
-export const SidebarData = [
+const SidebarData = [
   {
     title: 'World WIP',
-    path: '/'
+    path: '/',
   },
   {
     title: 'Search by Country',
-    path: '/country'
+    path: '/country',
   },
   {
     title: 'About',
-    path: '/about'
-  }
-]
+    path: '/about',
+  },
+];
+
+export { SidebarData as default };

@@ -1,44 +1,43 @@
-import React, {useEffect} from 'react'
-import './App.css'
-import Sidebar from '../src/components/Sidebar'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Country from '../src/containers/Country'
-import World from "./containers/World"
-import About from "./containers/About"
+import React, { useEffect } from 'react';
+import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Country from './containers/Country';
+import World from './containers/World';
+import About from './containers/About';
 
 function App() {
-
   const getCountriesData = () => {
     fetch('https://api.covid19api.com/countries')
-    .then((response) => {
-      return response.json()
-    })
-    .then((data) => {
-      data.sort(function(a, b) {
-        let textA = a.Country.toUpperCase();
-        let textB = b.Country.toUpperCase();
-        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      .then((response) => response.json())
+      .then((data) => {
+        data.sort((a, b) => {
+          const textA = a.Country.toUpperCase();
+          const textB = b.Country.toUpperCase();
+          if (textA < textB) return -1;
+          if (textA > textB) return 1;
+          return 0;
+        });
+        sessionStorage.setItem('countries', JSON.stringify(data));
       });
-      sessionStorage.setItem('countries', JSON.stringify(data))
-    })
-  }
+  };
 
   useEffect(() => {
-    getCountriesData()
-  }, [])
+    getCountriesData();
+  }, []);
 
   return (
     <>
       <Router>
-        <Sidebar/>
+        <Sidebar />
         <Switch>
-          <Route path='/' exact component={World}/>
-          <Route path='/country' exact component={Country}/>
-          <Route path='/about' exact component={About}/>
+          <Route path="/" exact component={World} />
+          <Route path="/country" exact component={Country} />
+          <Route path="/about" exact component={About} />
         </Switch>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

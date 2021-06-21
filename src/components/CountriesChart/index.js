@@ -1,33 +1,43 @@
-import React from 'react'
-import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts"
-import capitalizeFirstLetter from "../../utils/functions"
-import CustomTooltip from "./Tooltip"
+import React from 'react';
+import {
+  Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
+} from 'recharts';
+import capitalizeFirstLetter from '../../utils/functions';
+import CustomTooltip from './Tooltip';
 
-function CountriesChart( { results,caseParam,  } ) {
+function CountriesChart({ results, caseParam }) {
   return (
     <ResponsiveContainer width="95%" height={400}>
-      <AreaChart data={results} margin={{right: 20, left: 50,}}>
+      <AreaChart data={results} margin={{ right: 20, left: 50 }}>
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-            <stop offset="95%" stopColor="#8884d8" stopOpacity={0.2}/>
+            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+            <stop offset="95%" stopColor="#8884d8" stopOpacity={0.2} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="Date"
-               tickFormatter={(str) => {
-                 const dateObj = new Date(str)
-                 const weekday = dateObj.toLocaleString("en", {month: "short"})
-                 return weekday + ', ' + dateObj.getDate()
-               }}
+        <XAxis
+          dataKey="Date"
+          tickFormatter={(str) => {
+            const dateObj = new Date(str);
+            const weekday = dateObj.toLocaleString('en', { month: 'short' });
+            return `${weekday}, ${dateObj.getDate()}`;
+          }}
         />
-        <YAxis dataKey={capitalizeFirstLetter(caseParam)}
-               tickCount={5}/>
-        <CartesianGrid opacity={0.5} vertical={false}/>
-        <Tooltip content={<CustomTooltip name={caseParam}/>}/>
-        <Area type="monotone" dataKey={capitalizeFirstLetter(caseParam)} stroke="#8884d8" fillOpacity={1}
-              fill="url(#colorUv)"/>
+        <YAxis
+          dataKey={capitalizeFirstLetter(caseParam)}
+          tickCount={5}
+        />
+        <CartesianGrid opacity={0.5} vertical={false} />
+        <Tooltip content={<CustomTooltip name={caseParam} />} />
+        <Area
+          type="monotone"
+          dataKey={capitalizeFirstLetter(caseParam)}
+          stroke="#8884d8"
+          fillOpacity={1}
+          fill="url(#colorUv)"
+        />
       </AreaChart>
     </ResponsiveContainer>
-  )
+  );
 }
-export default CountriesChart
+export default CountriesChart;
