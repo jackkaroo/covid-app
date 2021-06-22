@@ -1,0 +1,19 @@
+.page-text {
+    width:70%;
+    font-size: 22px;
+    margin: 20px auto;
+}
+.about {
+    background-color: rgb(10, 140, 255);
+    color: #ffffff;
+}
+
+.about a {
+    text-decoration: underline!important;
+    color: #ffffff!important;
+}
+
+.about a:hover {
+    text-decoration: none!important;
+}
+

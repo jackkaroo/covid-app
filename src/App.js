@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import CountriesPage from './containers/CountriesStatisticPage';
 import WorldPage from './containers/WorldStatisticPage';
-import About from './containers/About';
+import AboutPage from './containers/AboutPage';
 import CountriesService from './services/countries.service';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={WorldPage} />
           <Route path="/countries" exact component={CountriesPage} />
-          <Route path="/about" exact component={About} />
+          <Route path="/about" exact component={AboutPage} />
         </Switch>
       </Router>
     </>
