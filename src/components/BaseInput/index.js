@@ -4,20 +4,21 @@ import {
 } from '@material-ui/core';
 import useStyles from '../../utils/hooks';
 
-export default function BaseInput({ param, setParam, children }) {
+export default function BaseInput({
+  param, setParam, children, label,
+}) {
   const classes = useStyles();
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="demo-simple-select-outlined-label">Select Country</InputLabel>
+      <InputLabel id="demo-simple-select-outlined-label">{label}</InputLabel>
       <Select
         labelId="demo-simple-select-outlined-label"
         id="demo-simple-select-outlined"
         value={param}
         onChange={(e) => {
           setParam(e.target.value);
-          sessionStorage.setItem(`${setParam}`, e.target.value);
         }}
-        label="Select Country"
+        label={label}
       >
         {children}
       </Select>

@@ -5,21 +5,16 @@ import Sidebar from './components/Sidebar';
 import CountriesPage from './containers/Countries';
 import World from './containers/World';
 import About from './containers/About';
+import CountriesService from './services/countries.service';
 
 function App() {
   const getCountriesData = () => {
-    fetch('https://api.covid19api.com/countries')
-      .then((response) => response.json())
+    CountriesService.getCountriesNames()
       .then((data) => {
-        data.sort((a, b) => {
-          const textA = a.Country.toUpperCase();
-          const textB = b.Country.toUpperCase();
-          if (textA < textB) return -1;
-          if (textA > textB) return 1;
-          return 0;
-        });
+        data.sort((a, b) => a.Country.localeCompare(b.Country));
         sessionStorage.setItem('countries', JSON.stringify(data));
-      });
+      })
+      .catch(() => alert('Something goes wrong..'));
   };
 
   useEffect(() => {
