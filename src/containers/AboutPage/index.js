@@ -13,7 +13,14 @@ function AboutPage() {
         <a target="_blank" href="https://covid19api.com/" rel="noreferrer">
           Covid19 API
         </a>
-        . Sometimes it doesn&apos;t work as expected, so you may need to try searching again :(
+        {' '}
+        and
+        {' '}
+        <a target="_blank" href="https://recharts.org/en-US/" rel="noreferrer">
+          Recharts
+        </a>
+        {' '}
+        library for charts. Sometimes it doesn&apos;t work as expected, so you may need to try searching again :(
       </p>
       <img className="about-image" src="https://imgur.com/65rYbX2.png" alt="covid19-logo" />
       <p className="about-text">
@@ -26,6 +33,7 @@ function AboutPage() {
         Alternatively, you can dynamically change the case type by clicking the appropriate
         input below and see the new results.
       </p>
+      <img className="about-image" src="https://imgur.com/oe8M5Wr.png" alt="recharts-logo" />
       <p className="about-text">
         On page
         {' '}
