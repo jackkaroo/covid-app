@@ -1,5 +1,5 @@
-.page-text {
-    width:70%;
+.about-text {
+    max-width: 1000px;
     font-size: 22px;
     margin: 20px auto;
 }
@@ -17,3 +17,7 @@
     text-decoration: none!important;
 }
 
+.about-image {
+    max-width: 600px;
+    width:100%;
+}

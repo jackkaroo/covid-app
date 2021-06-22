@@ -35,6 +35,12 @@
     padding-right: 10px;
 }
 
+@media only screen and (max-width: 860px) {
+    .nav-menu.active {
+        width:100%;
+    }
+}
+
 .nav-menu-items {
     width: 100%;
     padding-left: 0;

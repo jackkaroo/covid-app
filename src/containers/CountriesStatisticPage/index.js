@@ -53,10 +53,10 @@ function CountriesPage() {
       {loading ? <CircularProgress /> : ''}
       {visible
         ? (
-          <div className="countries_chart">
+          <div>
             {chartData.length > 0
               ? (
-                <div>
+                <div className="countries_chart-wrapper">
                   <CountriesChart chartData={chartData} caseChartParam={caseChartParam} />
                 </div>
               )

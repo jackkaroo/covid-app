@@ -7,8 +7,8 @@ import CustomTooltip from '../Tooltip';
 
 function CountriesChart({ chartData, caseChartParam }) {
   return (
-    <ResponsiveContainer width="95%" height={400}>
-      <AreaChart data={chartData} margin={{ right: 20, left: 50 }}>
+    <ResponsiveContainer width="98%" height={400}>
+      <AreaChart data={chartData}>
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
             <stop
