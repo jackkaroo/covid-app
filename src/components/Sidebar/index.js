@@ -13,17 +13,13 @@ function Sidebar() {
   return (
     <>
       <div className="sidebar">
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link to="#" className="menu-bars">
           <FaIcons.FaBars onClick={showSidebar} />
         </Link>
       </div>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-        {/* eslint-disable-next-line max-len */}
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
         <ul className="nav-menu-items" onClick={showSidebar}>
           <li className="sidebar-toggle">
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link to="#" className="menu-bars color-white">
               <AiIcons.AiOutlineClose />
             </Link>

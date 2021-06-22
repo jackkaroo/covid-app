@@ -1,16 +1,14 @@
 import {
-  Button, FormControl, MenuItem, TextField,
+  Button, MenuItem,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import BaseInput from '../BaseInput';
-import useStyles from '../../utils/hooks';
+import DatePicker from '../DatePicker';
 
 export default function CountriesSearchBar({ countries, handleSearchCountries }) {
   const [countryParam, setCountryParam] = useState('');
   const [caseParam, setCaseParam] = useState('');
   const [dateFromParam, setDateFromParam] = useState('');
-
-  const classes = useStyles();
 
   useEffect(() => {
     if (sessionStorage.getItem('caseParam')) setCaseParam(sessionStorage.getItem('caseParam'));
@@ -43,20 +41,7 @@ export default function CountriesSearchBar({ countries, handleSearchCountries })
         <MenuItem value="deaths">Deaths</MenuItem>
       </BaseInput>
 
-      <FormControl variant="outlined" className={classes.formControl}>
-        <TextField
-          id="datetime-local"
-          label="Date From"
-          type="datetime-local"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={dateFromParam}
-          onChange={(e) => {
-            setDateFromParam(e.target.value);
-          }}
-        />
-      </FormControl>
+      <DatePicker param={dateFromParam} setParam={setDateFromParam} label="Select Date From" />
 
       <Button variant="contained" size="large" color="primary" onClick={() => handleSearch()}>
         Search

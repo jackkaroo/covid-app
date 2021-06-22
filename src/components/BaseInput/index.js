@@ -8,6 +8,7 @@ export default function BaseInput({
   param, setParam, children, label,
 }) {
   const classes = useStyles();
+
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <InputLabel id="demo-simple-select-outlined-label">{label}</InputLabel>

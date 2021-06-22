@@ -17,7 +17,6 @@ function CountriesPage() {
     setCountries(JSON.parse(sessionStorage.getItem('countries')));
   }, []);
 
-  // handleSearchCountries
   const handleSearchCountries = (params) => {
     const { countryParam, caseParam, dateFromParam } = params;
 
@@ -29,7 +28,7 @@ function CountriesPage() {
 
     CountriesService.getCountriesByStatus(countryParam, caseParam, dateFromParam)
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         if (data.length === 0) return setVisible(false);
         setVisible(true);
         return setChartData(data);
@@ -41,9 +40,9 @@ function CountriesPage() {
   };
 
   return (
-    <div className="countries page">
-      <h1 className="countries_title">Country statistics</h1>
-      <div className="countries_subtitle">Live By Country And Status After Date</div>
+    <div className="page">
+      <h1 className="page_title">Country Statistics</h1>
+      <div className="page_subtitle">Live By Country And Status After Date</div>
       <CountriesSearchBar
         countries={countries}
         handleSearchCountries={handleSearchCountries}

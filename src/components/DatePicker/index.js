@@ -1,24 +1,27 @@
 import React from 'react';
+import './index.css';
 import { FormControl, TextField } from '@material-ui/core';
 import useStyles from '../../utils/hooks';
 
-export default function TimePicker(dateFromParam, setDateFromParam) {
+function DatePicker({ param, setParam, label }) {
   const classes = useStyles();
+
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <TextField
         id="datetime-local"
-        label="Date From"
+        label={label}
         type="datetime-local"
         InputLabelProps={{
           shrink: true,
         }}
-        value={dateFromParam}
+        value={param}
         onChange={(e) => {
-          setDateFromParam(e.target.value);
-          sessionStorage.setItem('dateFromParam', e.target.value);
+          setParam(e.target.value);
         }}
       />
     </FormControl>
   );
 }
+
+export default DatePicker;

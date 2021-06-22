@@ -3,9 +3,8 @@ import {
   Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
 import capitalizeFirstLetter from '../../utils/functions';
-import CustomTooltip from './Tooltip';
 
-function CountriesChart({ chartData, caseChartParam }) {
+function WorldChart({ chartData, caseChartParam }) {
   return (
     <ResponsiveContainer width="95%" height={400}>
       <AreaChart data={chartData} margin={{ right: 20, left: 50 }}>
@@ -14,11 +13,11 @@ function CountriesChart({ chartData, caseChartParam }) {
             <stop
               offset="5%"
               stopColor={
-                caseChartParam === 'confirmed'
-                  ? '#8884d8'
-                  : (caseChartParam === 'recovered'
-                    ? '#0ad83b'
-                    : '#fc2621')
+                  caseChartParam === 'NewConfirmed' || caseChartParam === 'TotalConfirmed'
+                    ? '#8884d8'
+                    : (caseChartParam === 'NewRecovered' || caseChartParam === 'TotalRecovered'
+                      ? '#0ad83b'
+                      : '#fc2621')
                 }
               stopOpacity={0.8}
             />
@@ -27,18 +26,19 @@ function CountriesChart({ chartData, caseChartParam }) {
         </defs>
         <XAxis
           dataKey="Date"
-          tickFormatter={(str) => {
-            const dateObj = new Date(str);
-            const weekday = dateObj.toLocaleString('en', { month: 'short' });
-            return `${weekday}, ${dateObj.getDate()}`;
-          }}
+          // tickFormatter={(str) => {
+          //   const dateObj = new Date(str);
+          //   // const weekday = dateObj.toLocaleString('en', { month: 'short' });
+          //   // return `${weekday}, ${dateObj.getDate()}`;
+          //   return dateObj.getDate();
+          // }}
         />
         <YAxis
-          dataKey={capitalizeFirstLetter(caseChartParam)}
+          dataKey={caseChartParam}
           tickCount={5}
         />
         <CartesianGrid opacity={0.5} vertical={false} />
-        <Tooltip content={<CustomTooltip name={caseChartParam} />} />
+        <Tooltip />
         <Area
           type="monotone"
           dataKey={capitalizeFirstLetter(caseChartParam)}
@@ -50,4 +50,4 @@ function CountriesChart({ chartData, caseChartParam }) {
     </ResponsiveContainer>
   );
 }
-export default CountriesChart;
+export default WorldChart;
