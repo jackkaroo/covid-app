@@ -7,7 +7,7 @@ function AboutPage() {
     <div className="page about">
       <h1 className="page_title">About</h1>
       <p className="page-text">
-        Hello! My name is Kate. I developed this app for my Test Task in Genesis.
+        Hello! My name is Kate. I developed this app for my Test Task for Genesis.
         I used the public
         {' '}
         <a target="_blank" href="https://covid19api.com/" rel="noreferrer">
