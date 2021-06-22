@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { CircularProgress } from '@material-ui/core';
-import CountriesChart from '../components/CountriesChart';
+import CountriesChart from '../../components/CountriesChart';
 import CountriesForm from './CountriesForm';
+import './index.css';
+import capitalizeFirstLetter from '../../utils/functions';
+import CountriesService from './CountriesService';
 
-function Country() {
+function CountriesPage() {
   const [countries, setCountries] = useState([]);
   const [countryParam, setCountryParam] = useState('');
   const [caseParam, setCaseParam] = useState('');
+  const [caseChartParam, setCaseChartParam] = useState('');
   const [dateFromParam, setDateFromParam] = useState('');
   const [results, setResults] = useState('');
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(true);
 
   const getResponse = () => {
-    if (!countryParam) return alert('Please enter correct values.');
-    if (!caseParam) return alert('Please enter correct values.');
-    if (!dateFromParam) return alert('Please enter correct values.');
+    if (!countryParam || !caseParam || !dateFromParam) return alert('Please enter correct values.');
     setLoading(true);
-    fetch(`${process.env.REACT_APP_API_URL}/live/country/${countryParam}/status/${caseParam}/date/${dateFromParam}`)
-    // fetch('https://api.covid19api.com/live/country/italy/status/confirmed/date/2021-05-21T13:13:30Z')
+    setCaseChartParam(caseParam);
+    CountriesService.getCountriesByStatus(countryParam, caseParam, dateFromParam)
       .then((response) => {
         if (!response.ok) {
-          setLoading(false);
           throw Error(response.statusText);
         }
         return response.json();
       })
       .then((data) => {
-        setLoading(false);
         console.log(data);
         if (data.length === 0) return setVisible(false);
         setVisible(true);
@@ -35,8 +35,8 @@ function Country() {
       })
       .catch(() => {
         alert('Something goes wrong..');
-        setLoading(false);
-      });
+      })
+      .finally(() => setLoading(false));
     return 1;
   };
 
@@ -48,8 +48,9 @@ function Country() {
   }, []);
 
   return (
-    <div className="home">
-      <h1>Live By Country And Status After Date</h1>
+    <div className="countries page">
+      <h1 className="countries_title">Country statistics</h1>
+      <div className="countries_subtitle">Live By Country And Status After Date</div>
       <CountriesForm
         countryParam={countryParam}
         setCountryParam={setCountryParam}
@@ -63,15 +64,22 @@ function Country() {
       {loading ? <CircularProgress /> : ''}
       {visible
         ? (
-          <div>
+          <div className="countries_chart">
             {results.length > 0
-              ? <CountriesChart results={results} caseParam={caseParam} />
+              ? (
+                <div>
+                  <CountriesChart results={results} caseChartParam={caseChartParam} />
+                  <h2>
+                    {capitalizeFirstLetter(countryParam)}
+                  </h2>
+                </div>
+              )
               : '' }
           </div>
         )
-        : 'Unfortunately, the provided API does not have this information.'}
+        : <div className="countries_no-info">Unfortunately, the provided API does not have this information.</div>}
     </div>
   );
 }
 
-export default Country;
+export default CountriesPage;

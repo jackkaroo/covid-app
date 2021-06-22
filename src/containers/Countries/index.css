@@ -1,0 +1,24 @@
+.countries {
+    padding-bottom: 50px;
+}
+
+.countries_title {
+    margin-bottom: 10px;
+}
+
+.countries_subtitle {
+    margin-bottom: 50px;
+}
+
+.countries_no-info {
+    font-size: 22px;
+}
+
+.countries-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

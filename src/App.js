@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
-import Country from './containers/Country';
+import CountriesPage from './containers/Countries';
 import World from './containers/World';
 import About from './containers/About';
 
@@ -32,7 +32,7 @@ function App() {
         <Sidebar />
         <Switch>
           <Route path="/" exact component={World} />
-          <Route path="/country" exact component={Country} />
+          <Route path="/countries" exact component={CountriesPage} />
           <Route path="/about" exact component={About} />
         </Switch>
       </Router>

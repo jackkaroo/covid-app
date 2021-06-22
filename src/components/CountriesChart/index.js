@@ -5,7 +5,7 @@ import {
 import capitalizeFirstLetter from '../../utils/functions';
 import CustomTooltip from './Tooltip';
 
-function CountriesChart({ results, caseParam }) {
+function CountriesChart({ results, caseChartParam }) {
   return (
     <ResponsiveContainer width="95%" height={400}>
       <AreaChart data={results} margin={{ right: 20, left: 50 }}>
@@ -24,14 +24,14 @@ function CountriesChart({ results, caseParam }) {
           }}
         />
         <YAxis
-          dataKey={capitalizeFirstLetter(caseParam)}
+          dataKey={capitalizeFirstLetter(caseChartParam)}
           tickCount={5}
         />
         <CartesianGrid opacity={0.5} vertical={false} />
-        <Tooltip content={<CustomTooltip name={caseParam} />} />
+        <Tooltip content={<CustomTooltip name={caseChartParam} />} />
         <Area
           type="monotone"
-          dataKey={capitalizeFirstLetter(caseParam)}
+          dataKey={capitalizeFirstLetter(caseChartParam)}
           stroke="#8884d8"
           fillOpacity={1}
           fill="url(#colorUv)"

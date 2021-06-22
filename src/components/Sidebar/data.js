@@ -5,7 +5,7 @@ const SidebarData = [
   },
   {
     title: 'Search by Country',
-    path: '/country',
+    path: '/countries',
   },
   {
     title: 'About',
