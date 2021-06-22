@@ -33,7 +33,10 @@ function WorldPage() {
   return (
     <div className="world page">
       <h1 className="page_title">World Global Statistics</h1>
-      <div className="page_subtitle">World WIP</div>
+      <div className="page_subtitle">
+        World WIP. Please note that
+        the provided API only shows results from January 2021.
+      </div>
       <WorldSearchBar handleSearchWorld={handleSearchWorld} />
       {loading ? <div className="world-loader"><CircularProgress /></div> : ''}
 

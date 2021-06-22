@@ -42,7 +42,10 @@ function CountriesPage() {
   return (
     <div className="page">
       <h1 className="page_title">Country Statistics</h1>
-      <div className="page_subtitle">Live By Country And Status After Date</div>
+      <div className="page_subtitle">
+        Live By Country And Status After Date. Please note that
+        the provided API only shows results from January 2021.
+      </div>
       <CountriesSearchBar
         countries={countries}
         handleSearchCountries={handleSearchCountries}
