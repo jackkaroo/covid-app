@@ -1,5 +1,5 @@
 import React from 'react';
-import capitalizeFirstLetter from '../../../utils/functions';
+import capitalizeFirstLetter from '../../utils/functions';
 import './index.css';
 
 export default function CustomTooltip({
@@ -9,6 +9,7 @@ export default function CustomTooltip({
     return (
       <div className="tooltip">
         <h4>{label.substring(0, 10)}</h4>
+        <p>{label.substring(11, 16)}</p>
         <p>
           {capitalizeFirstLetter(name)}
           :

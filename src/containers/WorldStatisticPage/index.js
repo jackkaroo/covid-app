@@ -22,7 +22,6 @@ function WorldPage() {
       .then((data) => {
         console.log(data);
         data.sort((a, b) => new Date(a.Date) - new Date(b.Date));
-        // if (data.length === 0) return setVisible(false);
         return setChartData(data);
       })
       .catch(() => alert('Something goes wrong..'))

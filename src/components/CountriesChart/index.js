@@ -3,7 +3,7 @@ import {
   Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
 import capitalizeFirstLetter from '../../utils/functions';
-import CustomTooltip from './Tooltip';
+import CustomTooltip from '../Tooltip';
 
 function CountriesChart({ chartData, caseChartParam }) {
   return (
@@ -29,8 +29,10 @@ function CountriesChart({ chartData, caseChartParam }) {
           dataKey="Date"
           tickFormatter={(str) => {
             const dateObj = new Date(str);
-            const weekday = dateObj.toLocaleString('en', { month: 'short' });
-            return `${weekday}, ${dateObj.getDate()}`;
+            const userTimezoneOffset = dateObj.getTimezoneOffset() * 60000;
+            const newDate = new Date(dateObj.getTime() + userTimezoneOffset);
+            const weekday = newDate.toLocaleString('en', { month: 'short' });
+            return `${weekday}, ${newDate.getDate()}`;
           }}
         />
         <YAxis
