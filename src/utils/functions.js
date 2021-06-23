@@ -18,11 +18,17 @@ export const nFormatter = (num, digits) => {
 export const isToday = (someDateString) => {
   const someDate = new Date(someDateString);
   const today = new Date();
-  console.log(someDate);
-  console.log(today);
   return someDate.getDate() === today.getDate()
     && someDate.getMonth() === today.getMonth()
     && someDate.getFullYear() === today.getFullYear();
+};
+
+export const dateTickFormatter = (str) => {
+  const dateObj = new Date(str);
+  const userTimezoneOffset = dateObj.getTimezoneOffset() * 60000;
+  const newDate = new Date(dateObj.getTime() + userTimezoneOffset);
+  const weekday = newDate.toLocaleString('en', { month: 'short' });
+  return `${weekday}, ${newDate.getDate()}`;
 };
 
 export const setItemToSession = (key, item) => sessionStorage.setItem(key, item);

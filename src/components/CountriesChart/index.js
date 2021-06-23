@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
-import { capitalizeFirstLetter, nFormatter } from '../../utils/functions';
+import { capitalizeFirstLetter, dateTickFormatter, nFormatter } from '../../utils/functions';
 import CustomTooltip from '../Tooltip';
 
 function CountriesChart({ chartData, caseChartParam }) {
@@ -27,17 +27,11 @@ function CountriesChart({ chartData, caseChartParam }) {
         </defs>
         <XAxis
           dataKey="Date"
-          tickFormatter={(str) => {
-            const dateObj = new Date(str);
-            const userTimezoneOffset = dateObj.getTimezoneOffset() * 60000;
-            const newDate = new Date(dateObj.getTime() + userTimezoneOffset);
-            const weekday = newDate.toLocaleString('en', { month: 'short' });
-            return `${weekday}, ${newDate.getDate()}`;
-          }}
+          tickFormatter={(str) => dateTickFormatter(str)}
         />
         <YAxis
           dataKey={capitalizeFirstLetter(caseChartParam)}
-          tickCount={5}
+          tickCount={6}
           tickFormatter={(str) => nFormatter(str, 3)}
         />
         <CartesianGrid opacity={0.5} vertical={false} />

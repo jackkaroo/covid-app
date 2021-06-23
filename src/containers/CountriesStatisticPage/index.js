@@ -28,7 +28,6 @@ function CountriesPage() {
 
     CountriesService.getCountriesByStatus(countryParam, caseParam, dateFromParam)
       .then((data) => {
-        console.log(data);
         if (data.length === 0) return setVisible(false);
         setVisible(true);
         return setChartData(data);
