@@ -49,20 +49,25 @@ function CountriesPage() {
         countries={countries}
         handleSearchCountries={handleSearchCountries}
       />
-      {loading ? <CircularProgress /> : ''}
-      {visible
-        ? (
-          <div>
-            {chartData.length > 0
-              ? (
-                <div className="countries_chart-wrapper">
-                  <CountriesChart chartData={chartData} caseChartParam={caseChartParam} />
-                </div>
-              )
-              : '' }
-          </div>
-        )
-        : <div className="countries_no-info">Unfortunately, the provided API does not have this information.</div>}
+
+      {
+        loading
+          ? <CircularProgress />
+          : (visible
+            ? (
+              <div>
+                {chartData.length > 0
+                  ? (
+                    <div>
+                      <CountriesChart chartData={chartData} caseChartParam={caseChartParam} />
+                    </div>
+                  )
+                  : '' }
+              </div>
+            )
+            : <div className="countries_no-info">Unfortunately, the provided API does not have this information.</div>)
+      }
+
     </div>
   );
 }

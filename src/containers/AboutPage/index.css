@@ -3,15 +3,14 @@
     font-size: 22px;
     margin: 20px auto;
 }
-.about {
-    background-color: rgba(10, 140, 255, 0.13);
-}
 
 .about a {
+    color: #3f51b5;
     text-decoration: underline!important;
 }
 
 .about a:hover {
+    color: #3f51b5;
     text-decoration: none!important;
 }
 

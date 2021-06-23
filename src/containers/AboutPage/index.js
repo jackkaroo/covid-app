@@ -35,7 +35,6 @@ function AboutPage() {
         Alternatively, you can dynamically change the case type by clicking the appropriate
         input below and see the new results.
       </p>
-      <img className="about-image" src="https://imgur.com/oe8M5Wr.png" alt="recharts-logo" />
       <p className="about-text">
         On page
         {' '}

@@ -6,6 +6,7 @@ import WorldChart from '../../components/WorldChart';
 import BaseInput from '../../components/BaseInput';
 import CaseMenuData from './data';
 import { setItemToSession } from '../../utils/functions';
+import './index.css';
 
 function WorldPage() {
   const [caseParam, setCaseParam] = useState('NewConfirmed');
@@ -38,8 +39,6 @@ function WorldPage() {
         the provided API only shows results from January 2021.
       </div>
       <WorldSearchBar handleSearchWorld={handleSearchWorld} />
-      {loading ? <div className="world-loader"><CircularProgress /></div> : ''}
-
       <BaseInput param={caseParam} setParam={setCaseParam} label="Select Case">
         {CaseMenuData
           ? CaseMenuData.map((el) => <MenuItem key={el.value} value={el.value}>{el.text}</MenuItem>)
@@ -48,10 +47,12 @@ function WorldPage() {
           )}
       </BaseInput>
 
-      {chartData.length > 0
-        ? <div className="world-chart"><WorldChart chartData={chartData} caseChartParam={caseParam} /></div>
-        : ''}
-
+      {loading
+        ? <div className="world-loader"><CircularProgress /></div>
+        : (chartData.length > 0
+          ? <div className="world-chart"><WorldChart chartData={chartData} caseChartParam={caseParam} /></div>
+          : ''
+        )}
     </div>
   );
 }
