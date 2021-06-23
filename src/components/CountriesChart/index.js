@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
-import capitalizeFirstLetter from '../../utils/functions';
+import { capitalizeFirstLetter, nFormatter } from '../../utils/functions';
 import CustomTooltip from '../Tooltip';
 
 function CountriesChart({ chartData, caseChartParam }) {
@@ -38,6 +38,7 @@ function CountriesChart({ chartData, caseChartParam }) {
         <YAxis
           dataKey={capitalizeFirstLetter(caseChartParam)}
           tickCount={5}
+          tickFormatter={(str) => nFormatter(str, 3)}
         />
         <CartesianGrid opacity={0.5} vertical={false} />
         <Tooltip content={<CustomTooltip name={caseChartParam} />} />

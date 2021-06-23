@@ -4,17 +4,12 @@ import {
 import React, { useEffect, useState } from 'react';
 import BaseInput from '../BaseInput';
 import DatePicker from '../DatePicker';
+import { getItemFromSession } from '../../utils/functions';
 
 export default function CountriesSearchBar({ countries, handleSearchCountries }) {
   const [countryParam, setCountryParam] = useState('');
   const [caseParam, setCaseParam] = useState('');
   const [dateFromParam, setDateFromParam] = useState('');
-
-  useEffect(() => {
-    if (sessionStorage.getItem('caseParam')) setCaseParam(sessionStorage.getItem('caseParam'));
-    if (sessionStorage.getItem('countryParam')) setCountryParam(sessionStorage.getItem('countryParam'));
-    if (sessionStorage.getItem('dateFromParam')) setDateFromParam(sessionStorage.getItem('dateFromParam'));
-  }, []);
 
   const handleSearch = () => {
     if (!countryParam || !caseParam || !dateFromParam) return alert('Please enter correct values.');
@@ -22,6 +17,18 @@ export default function CountriesSearchBar({ countries, handleSearchCountries })
       countryParam, caseParam, dateFromParam,
     });
   };
+
+  useEffect(() => {
+    if (getItemFromSession('caseParam')) {
+      setCaseParam(getItemFromSession('caseParam'));
+    }
+    if (getItemFromSession('countryParam')) {
+      setCountryParam(getItemFromSession('countryParam'));
+    }
+    if (getItemFromSession('dateFromParam')) {
+      setDateFromParam(getItemFromSession('dateFromParam'));
+    }
+  }, []);
 
   return (
     <div className="countries-form">

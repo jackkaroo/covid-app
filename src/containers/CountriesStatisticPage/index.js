@@ -4,6 +4,7 @@ import CountriesChart from '../../components/CountriesChart';
 import CountriesSearchBar from '../../components/CountriesSearchBar';
 import './index.css';
 import CountriesService from '../../services/countries.service';
+import { getItemFromSession, setItemToSession } from '../../utils/functions';
 
 function CountriesPage() {
   const [countries, setCountries] = useState([]);
@@ -14,17 +15,16 @@ function CountriesPage() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    setCountries(JSON.parse(sessionStorage.getItem('countries')));
+    setCountries(JSON.parse(getItemFromSession('countries')));
   }, []);
 
-  const handleSearchCountries = (params) => {
-    const { countryParam, caseParam, dateFromParam } = params;
-
+  const handleSearchCountries = ({ countryParam, caseParam, dateFromParam }) => {
     setLoading(true);
     setCaseChartParam(caseParam);
-    sessionStorage.setItem('countryParam', countryParam);
-    sessionStorage.setItem('caseParam', caseParam);
-    sessionStorage.setItem('dateFromParam', dateFromParam);
+
+    setItemToSession('countryParam', countryParam);
+    setItemToSession('caseParam', caseParam);
+    setItemToSession('dateFromParam', dateFromParam);
 
     CountriesService.getCountriesByStatus(countryParam, caseParam, dateFromParam)
       .then((data) => {
@@ -43,7 +43,7 @@ function CountriesPage() {
     <div className="page">
       <h1 className="page_title">Country Statistics</h1>
       <div className="page_subtitle">
-        Live By Country And Status After Date. Please note that
+        Please note that
         the provided API only shows results from January 2021.
       </div>
       <CountriesSearchBar

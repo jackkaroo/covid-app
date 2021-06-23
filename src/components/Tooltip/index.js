@@ -1,5 +1,5 @@
 import React from 'react';
-import capitalizeFirstLetter from '../../utils/functions';
+import { capitalizeFirstLetter } from '../../utils/functions';
 import './index.css';
 
 export default function CustomTooltip({

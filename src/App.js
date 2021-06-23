@@ -6,13 +6,14 @@ import CountriesPage from './containers/CountriesStatisticPage';
 import WorldPage from './containers/WorldStatisticPage';
 import AboutPage from './containers/AboutPage';
 import CountriesService from './services/countries.service';
+import { setItemToSession } from './utils/functions';
 
 function App() {
   const getCountriesData = () => {
     CountriesService.getCountriesNames()
       .then((data) => {
         data.sort((a, b) => a.Country.localeCompare(b.Country));
-        sessionStorage.setItem('countries', JSON.stringify(data));
+        setItemToSession('countries', JSON.stringify(data));
       })
       .catch(() => alert('Something goes wrong..'));
   };

@@ -2,12 +2,12 @@ import React from 'react';
 import {
   Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
-import capitalizeFirstLetter from '../../utils/functions';
+import { capitalizeFirstLetter, nFormatter } from '../../utils/functions';
 import CustomTooltip from '../Tooltip';
 
 function WorldChart({ chartData, caseChartParam }) {
   return (
-    <ResponsiveContainer width="98%" height={400}>
+    <ResponsiveContainer width="100%" height={400}>
       <AreaChart data={chartData}>
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -38,6 +38,7 @@ function WorldChart({ chartData, caseChartParam }) {
         <YAxis
           dataKey={caseChartParam}
           tickCount={5}
+          tickFormatter={(str) => nFormatter(str, 3)}
         />
         <CartesianGrid opacity={0.5} vertical={false} />
         <Tooltip content={<CustomTooltip name={caseChartParam} />} />

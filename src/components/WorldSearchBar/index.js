@@ -4,18 +4,26 @@ import {
 import React, { useEffect, useState } from 'react';
 import DatePicker from '../DatePicker';
 import './index.css';
+import { getItemFromSession, isToday } from '../../utils/functions';
 
 export default function CountriesSearchBar({ handleSearchWorld }) {
   const [dateFromParam, setDateFromParam] = useState('');
   const [dateToParam, setDateToParam] = useState('');
 
   useEffect(() => {
-    if (sessionStorage.getItem('worldDateFromParam')) setDateFromParam(sessionStorage.getItem('worldDateFromParam'));
-    if (sessionStorage.getItem('worldDateToParam')) setDateToParam(sessionStorage.getItem('worldDateToParam'));
+    if (getItemFromSession('worldDateFromParam')) {
+      setDateFromParam(getItemFromSession('worldDateFromParam'));
+    }
+    if (getItemFromSession('worldDateToParam')) {
+      setDateToParam(getItemFromSession('worldDateToParam'));
+    }
   }, []);
 
   const handleSearch = () => {
     if (!dateFromParam || !dateToParam) return alert('Please enter correct values.');
+    if (isToday(dateToParam)) {
+      alert('Please note that the Covid API does not work as expected if you specify today\'s date as the "Date To".');
+    }
     return handleSearchWorld({
       dateFromParam, dateToParam,
     });

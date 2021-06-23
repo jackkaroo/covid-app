@@ -1,5 +1,29 @@
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
-export { capitalizeFirstLetter as default };
+export const nFormatter = (num, digits) => {
+  const lookup = [
+    { value: 1, symbol: '' },
+    { value: 1e3, symbol: 'k' },
+    { value: 1e6, symbol: 'M' },
+    { value: 1e9, symbol: 'G' },
+    { value: 1e12, symbol: 'T' },
+    { value: 1e15, symbol: 'P' },
+    { value: 1e18, symbol: 'E' },
+  ];
+  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  const item = lookup.slice().reverse().find((el) => num >= el.value);
+  return item ? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol : '0';
+};
+
+export const isToday = (someDateString) => {
+  const someDate = new Date(someDateString);
+  const today = new Date();
+  console.log(someDate);
+  console.log(today);
+  return someDate.getDate() === today.getDate()
+    && someDate.getMonth() === today.getMonth()
+    && someDate.getFullYear() === today.getFullYear();
+};
+
+export const setItemToSession = (key, item) => sessionStorage.setItem(key, item);
+export const getItemFromSession = (key) => sessionStorage.getItem(key);

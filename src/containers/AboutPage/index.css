@@ -4,13 +4,11 @@
     margin: 20px auto;
 }
 .about {
-    background-color: rgb(10, 140, 255);
-    color: #ffffff;
+    background-color: rgba(10, 140, 255, 0.13);
 }
 
 .about a {
     text-decoration: underline!important;
-    color: #ffffff!important;
 }
 
 .about a:hover {

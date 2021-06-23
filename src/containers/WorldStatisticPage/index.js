@@ -5,6 +5,7 @@ import WorldService from '../../services/world.service';
 import WorldChart from '../../components/WorldChart';
 import BaseInput from '../../components/BaseInput';
 import CaseMenuData from './data';
+import { setItemToSession } from '../../utils/functions';
 
 function WorldPage() {
   const [caseParam, setCaseParam] = useState('NewConfirmed');
@@ -12,15 +13,14 @@ function WorldPage() {
   const [loading, setLoading] = useState(false);
   const [chartData, setChartData] = useState(false);
 
-  const handleSearchWorld = (params) => {
-    const { dateFromParam, dateToParam } = params;
+  const handleSearchWorld = ({ dateFromParam, dateToParam }) => {
     setLoading(true);
-    sessionStorage.setItem('worldDateFromParam', dateFromParam);
-    sessionStorage.setItem('worldDateToParam', dateToParam);
+
+    setItemToSession('worldDateFromParam', dateFromParam);
+    setItemToSession('worldDateToParam', dateToParam);
 
     WorldService.getWorldStatistic(dateFromParam, dateToParam)
       .then((data) => {
-        console.log(data);
         data.sort((a, b) => new Date(a.Date) - new Date(b.Date));
         return setChartData(data);
       })
@@ -34,7 +34,7 @@ function WorldPage() {
     <div className="world page">
       <h1 className="page_title">World Global Statistics</h1>
       <div className="page_subtitle">
-        World WIP. Please note that
+        Please note that
         the provided API only shows results from January 2021.
       </div>
       <WorldSearchBar handleSearchWorld={handleSearchWorld} />
