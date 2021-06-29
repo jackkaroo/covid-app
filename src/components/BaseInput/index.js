@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   FormControl, InputLabel, Select,
 } from '@material-ui/core';
 import useStyles from '../../utils/hooks';
 import './index.css';
 
-export default function BaseInput({
+function BaseInput({
   param, setParam, children, label,
 }) {
   const classes = useStyles();
@@ -29,3 +30,12 @@ export default function BaseInput({
     </div>
   );
 }
+
+BaseInput.propTypes = {
+  param: PropTypes.number.isRequired,
+  setParam: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
+  label: PropTypes.string.isRequired,
+};
+
+export default BaseInput;

@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { capitalizeFirstLetter } from '../../utils/functions';
 import './index.css';
 
-export default function CustomTooltip({
+function CustomTooltip({
   name, active, payload, label,
 }) {
   if (active && payload && label) {
@@ -19,5 +20,19 @@ export default function CustomTooltip({
       </div>
     );
   }
-  return null;
 }
+
+CustomTooltip.defaultProps = {
+  active: null,
+  payload: null,
+  label: null,
+};
+
+CustomTooltip.propTypes = {
+  name: PropTypes.string.isRequired,
+  active: PropTypes.bool,
+  payload: PropTypes.instanceOf(Array),
+  label: PropTypes.string,
+};
+
+export default CustomTooltip;

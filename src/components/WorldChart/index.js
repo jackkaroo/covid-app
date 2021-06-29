@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
@@ -47,4 +48,10 @@ function WorldChart({ chartData, caseChartParam }) {
     </ResponsiveContainer>
   );
 }
+
+WorldChart.propTypes = {
+  chartData: PropTypes.instanceOf(Array).isRequired,
+  caseChartParam: PropTypes.string.isRequired,
+};
+
 export default WorldChart;

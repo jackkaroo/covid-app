@@ -13,16 +13,16 @@ function Sidebar() {
   return (
     <>
       <div className="sidebar">
-        <Link to="#" className="menu-bars">
+        <div className="menu-bars">
           <FaIcons.FaBars onClick={showSidebar} />
-        </Link>
+        </div>
       </div>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <ul className="nav-menu-items" onClick={showSidebar}>
           <li className="sidebar-toggle">
-            <Link to="#" className="menu-bars color-white">
+            <div className="menu-bars color-white">
               <AiIcons.AiOutlineClose />
-            </Link>
+            </div>
           </li>
           {SidebarData.map((item) => (
             <li key={item.title} className="nav-text">

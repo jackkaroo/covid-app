@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
+import PropTypes from 'prop-types';
 import { capitalizeFirstLetter, dateTickFormatter, nFormatter } from '../../utils/functions';
 import CustomTooltip from '../Tooltip';
 
@@ -47,4 +48,10 @@ function CountriesChart({ chartData, caseChartParam }) {
     </ResponsiveContainer>
   );
 }
+
+CountriesChart.propTypes = {
+  chartData: PropTypes.instanceOf(Array).isRequired,
+  caseChartParam: PropTypes.string.isRequired,
+};
+
 export default CountriesChart;

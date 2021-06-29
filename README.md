@@ -1,11 +1,19 @@
 # Tesk Task Genesis (Boosters) 👾
 
 ## Setup:
-### 1. In the project directory install yarn dependencies
+### 1. In the project directory install dependencies
+``` 
+covid-app>npm install
+```
+or
 ``` 
 covid-app>yarn install
 ```
 ### 2. Run the project
+``` 
+covid-app>npm start
+```
+or
 ``` 
 covid-app>yarn start 
 ```

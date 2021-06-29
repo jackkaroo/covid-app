@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './index.css';
 import { FormControl, TextField } from '@material-ui/core';
 import useStyles from '../../utils/hooks';
@@ -26,5 +27,11 @@ function DatePicker({ param, setParam, label }) {
     </div>
   );
 }
+
+DatePicker.propTypes = {
+  param: PropTypes.number.isRequired,
+  setParam: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+};
 
 export default DatePicker;

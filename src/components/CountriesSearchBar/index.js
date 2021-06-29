@@ -2,11 +2,12 @@ import {
   Button, MenuItem,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import BaseInput from '../BaseInput';
 import DatePicker from '../DatePicker';
 import { getItemFromSession } from '../../utils/functions';
 
-export default function CountriesSearchBar({ countries, handleSearchCountries }) {
+function CountriesSearchBar({ countries, handleSearchCountries }) {
   const [countryParam, setCountryParam] = useState('');
   const [caseParam, setCaseParam] = useState('');
   const [dateFromParam, setDateFromParam] = useState('');
@@ -56,3 +57,10 @@ export default function CountriesSearchBar({ countries, handleSearchCountries })
     </div>
   );
 }
+
+CountriesSearchBar.propTypes = {
+  countries: PropTypes.instanceOf(Array).isRequired,
+  handleSearchCountries: PropTypes.func.isRequired,
+};
+
+export default CountriesSearchBar;

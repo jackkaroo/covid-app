@@ -1,12 +1,13 @@
 import {
   Button,
 } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import DatePicker from '../DatePicker';
 import './index.css';
 import { getItemFromSession, isToday } from '../../utils/functions';
 
-export default function CountriesSearchBar({ handleSearchWorld }) {
+function WorldSearchBar({ handleSearchWorld }) {
   const [dateFromParam, setDateFromParam] = useState('');
   const [dateToParam, setDateToParam] = useState('');
 
@@ -39,3 +40,9 @@ export default function CountriesSearchBar({ handleSearchWorld }) {
     </div>
   );
 }
+
+WorldSearchBar.propTypes = {
+  handleSearchWorld: PropTypes.func.isRequired,
+};
+
+export default WorldSearchBar;

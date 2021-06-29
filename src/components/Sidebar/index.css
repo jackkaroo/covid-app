@@ -1,5 +1,4 @@
 .sidebar {
-    /*background-color: #060b26;*/
     height: 80px;
     display: flex;
     align-items: center;
@@ -12,10 +11,12 @@
     font-size: 2rem;
     background: none;
     color: black;
+    cursor: pointer;
+    width:20px;
 }
 
 .menu-bars:hover {
-    color: #636863;
+    color: #636863!important;
 }
 
 .nav-menu {
