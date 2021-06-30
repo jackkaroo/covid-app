@@ -29,7 +29,7 @@ function DatePicker({ param, setParam, label }) {
 }
 
 DatePicker.propTypes = {
-  param: PropTypes.number.isRequired,
+  param: PropTypes.string.isRequired,
   setParam: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
 };

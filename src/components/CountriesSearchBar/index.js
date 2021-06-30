@@ -2,32 +2,45 @@ import {
   Button, MenuItem,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BaseInput from '../BaseInput';
 import DatePicker from '../DatePicker';
-import { getItemFromSession } from '../../utils/functions';
+import { getItemFromSession, getUrlParam } from '../../utils/functions';
 
 function CountriesSearchBar({ countries, handleSearchCountries }) {
   const [countryParam, setCountryParam] = useState('');
   const [caseParam, setCaseParam] = useState('');
   const [dateFromParam, setDateFromParam] = useState('');
 
-  const handleSearch = () => {
-    if (!countryParam || !caseParam || !dateFromParam) return alert('Please enter correct values.');
+  const location = useLocation();
+
+  const handleSearch = (country, caseType, dateFrom) => {
+    if (!country || !caseType || !dateFrom) return alert('Please enter correct values.');
     return handleSearchCountries({
-      countryParam, caseParam, dateFromParam,
+      country, caseType, dateFrom,
     });
   };
 
   useEffect(() => {
-    if (getItemFromSession('caseParam')) {
+    if (getUrlParam(location, 'country')
+      && getUrlParam(location, 'caseType')
+      && getUrlParam(location, 'dateFrom')) {
+      setCaseParam(getUrlParam(location, 'country'));
+      setCountryParam(getUrlParam(location, 'caseType'));
+      setDateFromParam(getUrlParam(location, 'dateFrom'));
+      handleSearch(getUrlParam(location, 'country'),
+        getUrlParam(location, 'caseType'),
+        getUrlParam(location, 'dateFrom'));
+    } else if (getItemFromSession('caseParam')
+      && getItemFromSession('countryParam')
+      && getItemFromSession('dateFromParam')) {
       setCaseParam(getItemFromSession('caseParam'));
-    }
-    if (getItemFromSession('countryParam')) {
       setCountryParam(getItemFromSession('countryParam'));
-    }
-    if (getItemFromSession('dateFromParam')) {
       setDateFromParam(getItemFromSession('dateFromParam'));
+      handleSearch(getItemFromSession('caseParam'),
+        getItemFromSession('countryParam'),
+        getItemFromSession('dateFromParam'));
     }
   }, []);
 
@@ -51,7 +64,12 @@ function CountriesSearchBar({ countries, handleSearchCountries }) {
 
       <DatePicker param={dateFromParam} setParam={setDateFromParam} label="Select Date From" />
 
-      <Button variant="contained" size="large" color="primary" onClick={() => handleSearch()}>
+      <Button
+        variant="contained"
+        size="large"
+        color="primary"
+        onClick={() => handleSearch(countryParam, caseParam, dateFromParam)}
+      >
         Search
       </Button>
     </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
 import CountriesChart from '../../components/CountriesChart';
 import CountriesSearchBar from '../../components/CountriesSearchBar';
@@ -18,15 +19,18 @@ function CountriesPage() {
     setCountries(JSON.parse(getItemFromSession('countries')));
   }, []);
 
-  const handleSearchCountries = ({ countryParam, caseParam, dateFromParam }) => {
+  const history = useHistory();
+
+  const handleSearchCountries = ({ country, caseType, dateFrom }) => {
     setLoading(true);
-    setCaseChartParam(caseParam);
+    setCaseChartParam(caseType);
 
-    setItemToSession('countryParam', countryParam);
-    setItemToSession('caseParam', caseParam);
-    setItemToSession('dateFromParam', dateFromParam);
+    history.push(`/?dateFrom=${dateFrom}&caseParam=${caseType}&countryParam=${country}`);
+    setItemToSession('countryParam', country);
+    setItemToSession('caseParam', caseType);
+    setItemToSession('dateFromParam', dateFrom);
 
-    CountriesService.getCountriesByStatus(countryParam, caseParam, dateFromParam)
+    CountriesService.getCountriesByStatus(country, caseType, dateFrom)
       .then((data) => {
         if (data.length === 0) return setVisible(false);
         setVisible(true);

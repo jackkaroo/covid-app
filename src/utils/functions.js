@@ -33,3 +33,5 @@ export const dateTickFormatter = (str) => {
 
 export const setItemToSession = (key, item) => sessionStorage.setItem(key, item);
 export const getItemFromSession = (key) => sessionStorage.getItem(key);
+
+export const getUrlParam = (location, key) => new URLSearchParams(location.search).get(key);

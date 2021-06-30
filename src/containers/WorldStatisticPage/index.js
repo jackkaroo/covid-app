@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { CircularProgress, MenuItem } from '@material-ui/core';
 import WorldSearchBar from '../../components/WorldSearchBar';
 import WorldService from '../../services/world.service';
@@ -14,13 +15,16 @@ function WorldPage() {
   const [loading, setLoading] = useState(false);
   const [chartData, setChartData] = useState(false);
 
-  const handleSearchWorld = ({ dateFromParam, dateToParam }) => {
+  const history = useHistory();
+
+  const handleSearchWorld = ({ dateFrom, dateTo }) => {
     setLoading(true);
 
-    setItemToSession('worldDateFromParam', dateFromParam);
-    setItemToSession('worldDateToParam', dateToParam);
+    history.push(`/?dateFrom=${dateFrom}&dateTo=${dateTo}`);
+    setItemToSession('worldDateFromParam', dateFrom);
+    setItemToSession('worldDateToParam', dateTo);
 
-    WorldService.getWorldStatistic(dateFromParam, dateToParam)
+    WorldService.getWorldStatistic(dateFrom, dateTo)
       .then((data) => {
         data.sort((a, b) => new Date(a.Date) - new Date(b.Date));
         return setChartData(data);

@@ -32,9 +32,9 @@ function BaseInput({
 }
 
 BaseInput.propTypes = {
-  param: PropTypes.number.isRequired,
+  param: PropTypes.string.isRequired,
   setParam: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.instanceOf(Array).isRequired,
   label: PropTypes.string.isRequired,
 };
 
