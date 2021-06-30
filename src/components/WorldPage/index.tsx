@@ -6,9 +6,11 @@ import BaseInput from '../BaseInput';
 import './index.css';
 import WorldSearchBarContainer from '../../containers/WorldSearchBarContainer';
 
+// @ts-ignore
+// @ts-ignore
 function WorldPage({
   caseParam, setCaseParam, loading, chartData, handleSearchWorld, caseMenuData,
-}) {
+} : { caseParam: string, setCaseParam: any, loading: boolean, chartData: any, handleSearchWorld: any, caseMenuData: any, }) {
   return (
     <div className="world page">
       <h1 className="page_title">World Global Statistics</h1>
@@ -21,7 +23,7 @@ function WorldPage({
 
       <BaseInput param={caseParam} setParam={setCaseParam} label="Select Case">
         {caseMenuData
-          ? caseMenuData.map((el) => (
+          ? caseMenuData.map((el: { value: string; text: string; }) => (
             <MenuItem
               key={el.value}
               value={el.value}

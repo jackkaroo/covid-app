@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// @ts-ignore
 import { useHistory } from 'react-router-dom';
 import WorldService from '../../services/world.service';
 import { setItemToSession } from '../../utils/functions';
@@ -13,7 +14,7 @@ function WorldPageContainer() {
 
   const history = useHistory();
 
-  const handleSearchWorld = ({ dateFrom, dateTo }) => {
+  const handleSearchWorld = ({ dateFrom, dateTo } : {dateFrom: string, dateTo: string }) => {
     setLoading(true);
 
     history.push(`/?dateFrom=${dateFrom}&dateTo=${dateTo}`);
@@ -22,7 +23,7 @@ function WorldPageContainer() {
 
     WorldService.getWorldStatistic(dateFrom, dateTo)
       .then((data) => {
-        data.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+        data.sort((a: { Date: string; }, b: { Date: string; }) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
         return setChartData(data);
       })
       .catch(() => alert('Something goes wrong..'))

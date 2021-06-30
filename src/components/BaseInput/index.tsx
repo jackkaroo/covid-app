@@ -8,7 +8,7 @@ import './index.css';
 
 function BaseInput({
   param, setParam, children, label,
-}) {
+} : {param: string, setParam: any, children: any, label: string}) {
   const classes = useStyles();
 
   return (

@@ -7,6 +7,9 @@ import DatePicker from '../DatePicker';
 function CountriesSearchBar({
   countries, countryParam, setCountryParam, caseParam, setCaseParam,
   dateFromParam, setDateFromParam, handleSearch,
+} : {
+    countries: any, countryParam: string, setCountryParam: any, caseParam: string,
+    setCaseParam: any, dateFromParam: string, setDateFromParam: any, handleSearch: any
 }) {
   return (
     <div className="countries-form">
@@ -17,7 +20,7 @@ function CountriesSearchBar({
       >
         {
           countries
-            ? countries.map((el) => (
+            ? countries.map((el: { Slug: string; Country: string; }) => (
               <MenuItem
                 key={el.Slug}
                 value={el.Slug}
@@ -61,10 +64,6 @@ function CountriesSearchBar({
   );
 }
 
-CountriesSearchBar.defaultProps = {
-  countries: [],
-};
-
 CountriesSearchBar.propTypes = {
   countryParam: PropTypes.string.isRequired,
   setCountryParam: PropTypes.func.isRequired,
@@ -72,7 +71,7 @@ CountriesSearchBar.propTypes = {
   setCaseParam: PropTypes.func.isRequired,
   dateFromParam: PropTypes.string.isRequired,
   setDateFromParam: PropTypes.func.isRequired,
-  countries: PropTypes.instanceOf(Array),
+  countries: PropTypes.instanceOf(Array).isRequired,
   handleSearch: PropTypes.func.isRequired,
 };
 

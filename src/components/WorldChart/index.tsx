@@ -6,7 +6,7 @@ import {
 import { capitalizeFirstLetter, dateTickFormatter, nFormatter } from '../../utils/functions';
 import CustomTooltip from '../Tooltip';
 
-function WorldChart({ chartData, caseChartParam }) {
+function WorldChart({ chartData, caseChartParam } : { chartData: any, caseChartParam: string }) {
   return (
     <ResponsiveContainer width="100%" height={400}>
       <BarChart data={chartData}>

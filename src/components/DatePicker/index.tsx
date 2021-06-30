@@ -5,7 +5,7 @@ import { FormControl, TextField } from '@material-ui/core';
 import useStyles from '../../utils/hooks';
 import '../BaseInput/index.css';
 
-function DatePicker({ param, setParam, label }) {
+function DatePicker({ param, setParam, label } : { param: string, setParam: any, label: string }) {
   const classes = useStyles();
 
   return (

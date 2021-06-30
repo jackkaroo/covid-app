@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// @ts-ignore
 import { Link } from 'react-router-dom';
 import './index.css';
 import * as FaIcons from 'react-icons/fa';

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+// @ts-ignore
 import { useHistory } from 'react-router-dom';
 import CountriesService from '../../services/countries.service';
 import { getItemSession, setItemToSession } from '../../utils/functions';
 import CountriesPage from '../../components/CountriesPage';
-import CountriesChart from '../../components/CountriesChart';
 
 function CountriesPageContainer() {
   const [countries, setCountries] = useState([]);
@@ -15,7 +15,7 @@ function CountriesPageContainer() {
 
   const history = useHistory();
 
-  const handleSearchCountries = ({ country, caseType, dateFrom }) => {
+  const handleSearchCountries = ({ country, caseType, dateFrom } : { country: string, caseType: string, dateFrom: string }) => {
     setLoading(true);
     setCaseChartParam(caseType);
 
@@ -37,7 +37,8 @@ function CountriesPageContainer() {
   };
 
   useEffect(() => {
-    setCountries(JSON.parse(getItemSession('countries')));
+    if (!getItemSession('countries')) alert('Please wait a few seconds.');
+    else setCountries(JSON.parse(getItemSession('countries') || ''));
   }, []);
 
   return (

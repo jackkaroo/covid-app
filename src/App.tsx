@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
+// @ts-ignore
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import CountriesPageContainer from './containers/CountriesPageContainer';
@@ -12,7 +13,7 @@ function App() {
   const getCountriesData = () => {
     CountriesService.getCountriesNames()
       .then((data) => {
-        data.sort((a, b) => a.Country.localeCompare(b.Country));
+        data.sort((a: { Country: string; }, b: { Country: string; }) => a.Country.localeCompare(b.Country));
         setItemToSession('countries', JSON.stringify(data));
       })
       .catch(() => alert('Something goes wrong..'));

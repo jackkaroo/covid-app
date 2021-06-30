@@ -5,7 +5,7 @@ import './index.css';
 
 function CustomTooltip({
   name, active, payload, label,
-}) {
+} : { name: string, active: boolean, payload: any, label: string }) {
   if (active && payload && label) {
     return (
       <div className="tooltip">

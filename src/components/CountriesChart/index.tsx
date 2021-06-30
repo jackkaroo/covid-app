@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { capitalizeFirstLetter, dateTickFormatter, nFormatter } from '../../utils/functions';
 import CustomTooltip from '../Tooltip';
 
-function CountriesChart({ chartData, caseChartParam }) {
+function CountriesChart({ chartData, caseChartParam } : { chartData: any, caseChartParam: string }) {
   return (
     <ResponsiveContainer width="98%" height={400}>
       <BarChart data={chartData}>

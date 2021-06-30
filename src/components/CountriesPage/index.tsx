@@ -7,7 +7,7 @@ import './index.css';
 
 function CountriesPage({
   countries, chartData, caseChartParam, loading, visible, handleSearchCountries,
-}) {
+} : { countries: any, chartData: any, caseChartParam: string, loading: boolean, visible: boolean, handleSearchCountries: any}) {
   return (
     <div className="page">
       <h1 className="page_title">Country Statistics</h1>
@@ -46,12 +46,8 @@ function CountriesPage({
   );
 }
 
-CountriesPage.defaultProps = {
-  countries: [],
-};
-
 CountriesPage.propTypes = {
-  countries: PropTypes.instanceOf(Array),
+  countries: PropTypes.instanceOf(Array).isRequired,
   caseChartParam: PropTypes.string.isRequired,
   visible: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,

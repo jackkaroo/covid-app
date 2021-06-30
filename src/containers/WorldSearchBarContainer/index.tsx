@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+// @ts-ignore
 import { useLocation } from 'react-router-dom';
 import { getItemSession, getUrlParam, isToday } from '../../utils/functions';
 import WorldSearchBar from '../../components/WorldSearchBar';
 
-function WorldSearchBarContainer({ handleSearchWorld }) {
+function WorldSearchBarContainer({ handleSearchWorld } : { handleSearchWorld: any }) {
   const [dateFromParam, setDateFromParam] = useState('');
   const [dateToParam, setDateToParam] = useState('');
 
   const location = useLocation();
 
-  const handleSearch = (dateFrom, dateTo) => {
+  const handleSearch = (dateFrom: string, dateTo: string) => {
     if (!dateFrom || !dateTo) {
       return alert('Please enter correct values.');
     }
@@ -24,13 +25,13 @@ function WorldSearchBarContainer({ handleSearchWorld }) {
 
   useEffect(() => {
     if (getUrlParam(location, 'dateFrom') && getUrlParam(location, 'dateTo')) {
-      setDateFromParam(getUrlParam(location, 'dateFrom'));
-      setDateToParam(getUrlParam(location, 'dateTo'));
-      handleSearch(getUrlParam(location, 'dateFrom'), getUrlParam(location, 'dateTo'));
+      setDateFromParam(getUrlParam(location, 'dateFrom') || '');
+      setDateToParam(getUrlParam(location, 'dateTo') || '');
+      handleSearch(getUrlParam(location, 'dateFrom') || '', getUrlParam(location, 'dateTo') || '');
     } else if (getItemSession('worldDateFromParam') && getItemSession('worldDateToParam')) {
-      setDateFromParam(getItemSession('worldDateFromParam'));
-      setDateToParam(getItemSession('worldDateToParam'));
-      handleSearch(getItemSession('worldDateFromParam'), getItemSession('worldDateToParam'));
+      setDateFromParam(getItemSession('worldDateFromParam') || '');
+      setDateToParam(getItemSession('worldDateToParam') || '');
+      handleSearch(getItemSession('worldDateFromParam') || '', getItemSession('worldDateToParam') || '');
     }
   }, []);
 

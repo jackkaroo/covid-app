@@ -1,11 +1,14 @@
+import React from 'react';
 import { Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import React from 'react';
 import DatePicker from '../DatePicker';
 import './index.css';
 
 function WorldSearchBar({
   dateFromParam, setDateFromParam, dateToParam, setDateToParam, handleSearch,
+} : {
+    dateFromParam: string, setDateFromParam: any, dateToParam: string,
+    setDateToParam: any, handleSearch: any,
 }) {
   return (
     <div className="world-form">
