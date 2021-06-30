@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
-import CountriesPage from './containers/CountriesStatisticPage';
-import WorldPage from './containers/WorldStatisticPage';
-import AboutPage from './containers/AboutPage';
+import CountriesPageContainer from './containers/CountriesPageContainer';
+import WorldPageContainer from './containers/WorldPageContainer';
+import AboutPage from './components/AboutPage';
 import CountriesService from './services/countries.service';
 import { setItemToSession } from './utils/functions';
 
@@ -27,8 +27,8 @@ function App() {
       <Router>
         <Sidebar />
         <Switch>
-          <Route path="/" exact component={WorldPage} />
-          <Route path="/countries" exact component={CountriesPage} />
+          <Route path="/" exact component={WorldPageContainer} />
+          <Route path="/countries" exact component={CountriesPageContainer} />
           <Route path="/about" exact component={AboutPage} />
         </Switch>
       </Router>

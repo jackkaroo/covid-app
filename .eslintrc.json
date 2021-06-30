@@ -19,16 +19,16 @@
     ],
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react/prop-types": "off",
         "import/no-named-as-default": 0,
         "jsx-a11y/label-has-associated-control":0,
-        "max-len": ["error", { "code": 120 }],
+        "max-len": 0,
         "no-nested-ternary": 0,
         "jsx-a11y/anchor-is-valid" : 0,
         "jsx-a11y/no-noninteractive-element-interactions" : 0,
         "jsx-a11y/click-events-have-key-events" : 0,
         "linebreak-style": 0,
         "react/no-unescaped-entities": 0,
-        "no-alert": 0
+        "no-alert": 0,
+        "no-unused-vars": 0
     }
 }

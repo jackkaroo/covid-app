@@ -14,7 +14,9 @@ function BaseInput({
   return (
     <div className="input-wrapper">
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">{label}</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">
+          {label}
+        </InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -34,7 +36,7 @@ function BaseInput({
 BaseInput.propTypes = {
   param: PropTypes.string.isRequired,
   setParam: PropTypes.func.isRequired,
-  children: PropTypes.instanceOf(Array).isRequired,
+  children: PropTypes.instanceOf(Object).isRequired,
   label: PropTypes.string.isRequired,
 };
 
