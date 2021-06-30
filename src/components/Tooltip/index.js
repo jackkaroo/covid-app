@@ -20,6 +20,7 @@ function CustomTooltip({
       </div>
     );
   }
+  return null;
 }
 
 CustomTooltip.defaultProps = {

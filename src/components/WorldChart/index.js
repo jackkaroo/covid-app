@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
+  Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
 import { capitalizeFirstLetter, dateTickFormatter, nFormatter } from '../../utils/functions';
 import CustomTooltip from '../Tooltip';
@@ -9,23 +9,7 @@ import CustomTooltip from '../Tooltip';
 function WorldChart({ chartData, caseChartParam }) {
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <AreaChart data={chartData}>
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop
-              offset="5%"
-              stopColor={
-                  caseChartParam === 'NewConfirmed' || caseChartParam === 'TotalConfirmed'
-                    ? '#8884d8'
-                    : (caseChartParam === 'NewRecovered' || caseChartParam === 'TotalRecovered'
-                      ? '#0ad83b'
-                      : '#fc2621')
-                }
-              stopOpacity={0.8}
-            />
-            <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-          </linearGradient>
-        </defs>
+      <BarChart data={chartData}>
         <XAxis
           dataKey="Date"
           tickFormatter={(str) => dateTickFormatter(str)}
@@ -37,14 +21,18 @@ function WorldChart({ chartData, caseChartParam }) {
         />
         <CartesianGrid opacity={0.5} vertical={false} />
         <Tooltip content={<CustomTooltip name={caseChartParam} />} />
-        <Area
+        <Bar
           type="monotone"
           dataKey={capitalizeFirstLetter(caseChartParam)}
-          stroke="#aaaaaa"
-          fillOpacity={1}
-          fill="url(#colorUv)"
+          fill={
+            caseChartParam === 'NewConfirmed' || caseChartParam === 'TotalConfirmed'
+              ? 'rgba(136,132,216,0.5)'
+              : (caseChartParam === 'NewRecovered' || caseChartParam === 'TotalRecovered'
+                ? 'rgba(39,216,29,0.5)'
+                : 'rgba(252,38,33,0.5)')
+          }
         />
-      </AreaChart>
+      </BarChart>
     </ResponsiveContainer>
   );
 }

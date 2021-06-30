@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
+  CartesianGrid, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis, Bar,
 } from 'recharts';
 import PropTypes from 'prop-types';
 import { capitalizeFirstLetter, dateTickFormatter, nFormatter } from '../../utils/functions';
@@ -9,23 +9,7 @@ import CustomTooltip from '../Tooltip';
 function CountriesChart({ chartData, caseChartParam }) {
   return (
     <ResponsiveContainer width="98%" height={400}>
-      <AreaChart data={chartData}>
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop
-              offset="5%"
-              stopColor={
-                caseChartParam === 'confirmed'
-                  ? '#8884d8'
-                  : (caseChartParam === 'recovered'
-                    ? '#0ad83b'
-                    : '#fc2621')
-                }
-              stopOpacity={0.8}
-            />
-            <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-          </linearGradient>
-        </defs>
+      <BarChart data={chartData}>
         <XAxis
           dataKey="Date"
           tickFormatter={(str) => dateTickFormatter(str)}
@@ -37,14 +21,17 @@ function CountriesChart({ chartData, caseChartParam }) {
         />
         <CartesianGrid opacity={0.5} vertical={false} />
         <Tooltip content={<CustomTooltip name={caseChartParam} />} />
-        <Area
-          type="monotone"
+        <Bar
           dataKey={capitalizeFirstLetter(caseChartParam)}
-          stroke="#aaaaaa"
-          fillOpacity={1}
-          fill="url(#colorUv)"
+          fill={
+            caseChartParam === 'confirmed'
+              ? 'rgba(136,132,216,0.5)'
+              : (caseChartParam === 'recovered'
+                ? 'rgba(39,216,29,0.5)'
+                : 'rgba(252,38,33,0.5)')
+          }
         />
-      </AreaChart>
+      </BarChart>
     </ResponsiveContainer>
   );
 }
