@@ -6,8 +6,6 @@ import BaseInput from '../BaseInput';
 import './index.css';
 import WorldSearchBarContainer from '../../containers/WorldSearchBarContainer';
 
-// @ts-ignore
-// @ts-ignore
 function WorldPage({
   caseParam, setCaseParam, loading, chartData, handleSearchWorld, caseMenuData,
 } : { caseParam: string, setCaseParam: any, loading: boolean, chartData: any, handleSearchWorld: any, caseMenuData: any, }) {
