@@ -20,7 +20,8 @@ function AboutPage() {
           Recharts
         </a>
         {' '}
-        library for charts. Sometimes it doesn&apos;t work as expected, so you may need to try searching again :(
+        library for charts. Sometimes it doesn&apos;t work as expected, so you may need to try
+        searching again :(
       </p>
       <img className="about-image" src="https://imgur.com/65rYbX2.png" alt="covid19-logo" />
       <p className="about-text">
@@ -28,7 +29,8 @@ function AboutPage() {
         {' '}
         <Link to="/">World Global Statistics</Link>
         {' '}
-        for a given period of time. To get the information you need to specify dates in the appropriate fields:
+        for a given period of time. To get the information you need to specify dates in the
+        appropriate fields:
         "Select Date From" and "Select date To".
         After clicking the "Search" button,
         you will see default result with statistics on "New confirmed" cases.
@@ -40,7 +42,8 @@ function AboutPage() {
         {' '}
         <Link to="/">Country Statistics</Link>
         {' '}
-        you can search for Covid19 Statistics by specifying "Country", "Case" and "Select Date From" fields.
+        you can search for Covid19 Statistics by specifying "Country", "Case" and "Select Date From"
+        fields.
       </p>
       <p className="about-text">
         Thank you so much for visiting my application! Good luck (to you and me)!

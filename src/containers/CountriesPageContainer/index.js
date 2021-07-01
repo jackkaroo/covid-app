@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import CountriesService from '../../services/countries.service';
 import { getItemSession, setItemToSession } from '../../utils/functions';
 import CountriesPage from '../../components/CountriesPage';
-import CountriesChart from '../../components/CountriesChart';
 
 function CountriesPageContainer() {
   const [countries, setCountries] = useState([]);

@@ -7,9 +7,9 @@ import CaseMenuData from './data';
 
 function WorldPageContainer() {
   const [caseParam, setCaseParam] = useState('NewConfirmed');
+  const [chartData, setChartData] = useState([]);
 
   const [loading, setLoading] = useState(false);
-  const [chartData, setChartData] = useState([]);
 
   const history = useHistory();
 
